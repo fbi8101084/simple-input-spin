@@ -118,5 +118,9 @@
     $.fn.getSpinnerValue = function () {
         return $(this).find('.number-input').val();
     }
+    
+    $.fn.setSpinnerValue = function (val) {
+        return $(this).find('.number-input').val(val);
+    }
 
 }(jQuery));
