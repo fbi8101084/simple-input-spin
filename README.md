@@ -28,6 +28,10 @@ Please see the styled spinner component as below,
 *You can get the spinner value like this*
 
     $('.counter').getSpinnerValue()
+    
+*You can set value to the spinner like this*
+
+    $('.counter').setSpinnerValue()
 
 # Props
 
