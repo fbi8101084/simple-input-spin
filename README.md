@@ -31,7 +31,7 @@ Please see the styled spinner component as below,
     
 *You can set value to the spinner like this*
 
-    $('.counter').setSpinnerValue()
+    $('.counter').setSpinnerValue('string')
 
 # Props
 
