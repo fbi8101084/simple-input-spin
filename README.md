@@ -41,11 +41,29 @@ Please see the styled spinner component as below,
    | max  | number  |
    | step  | number  |
    
-# Examples
+# Props Examples
     
     Example 1: <div class="counter"></div>
     
     Example 2: <div class="counter" min="5" max="5" step="0.5"></div>
+    
+# Events
+
+   | Event Name | Description |
+   | ------------- | ------------- |
+   | onChange  | when input value changed  |
+   | onClick  | when button has clicked  |
+   
+# Events Examples
+
+    $('.counter').htmlNumberSpinner({
+        onChange: function() {
+            // do something...
+        },
+        onClick: function() {
+            // do something...
+        }
+    });
     
     
 ### Note:
