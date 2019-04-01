@@ -1,5 +1,18 @@
 (function($) {
-    $.fn.htmlNumberSpinner = function () {
+    $.fn.htmlNumberSpinner = function (options) {
+        if (!options) {
+            options = {
+                onchange: function () {},
+                onclick: function () {}
+            }
+        }
+
+        if (!options.onChange) {
+            options.onChange = function () {};
+        }
+        if (!options.onClick) {
+            options.onClick = function () {};
+        }
 
         /* creating the counter buttons */
         $(this).append("<div class='btn decrementer'>-</div> <input class='number-input' type='number'/> <div class='btn incrementer'>+</div>");
@@ -76,6 +89,8 @@
             if(stepAttributeValue){
                 inputValue = parentEl.find('.number-input').val();
                 parentEl.find('.number-input').val((+inputValue)+(+stepAttributeValue));
+                options.onClick.call(this);
+                numberInput$.trigger('change');
                 return;
             }
             inputValue = parentEl.find('.number-input').val();
@@ -94,33 +109,37 @@
             if(stepAttributeValue){
                 inputValue = parentEl.find('.number-input').val();
                 parentEl.find('.number-input').val((+inputValue)-(+stepAttributeValue));
+                options.onClick.call(this);
+                numberInput$.trigger('change');
                 return;
             }
             inputValue = parentEl.find('.number-input').val();
             parentEl.find('.number-input').val(--inputValue);
-        })
+        });
 
-        numberInput$.change(function () {
+        numberInput$.on('change', function () {
             if(!maxAttributeValue || !minAttributeValue) return;
             var currentValue = $(this).val();
             if((+currentValue)>(+maxAttributeValue)){
-                $(this).val(maxAttributeValue)
-                return;
+                $(this).val(maxAttributeValue);
+                return true;
             }
             if((+currentValue)<(+minAttributeValue)){
-                $(this).val(minAttributeValue)
-                return;
+                $(this).val(minAttributeValue);
+                return true;
             }
+
+            options.onChange.call(this);
         })
 
     };
 
     $.fn.getSpinnerValue = function () {
         return $(this).find('.number-input').val();
-    }
+    };
     
     $.fn.setSpinnerValue = function (val) {
         return $(this).find('.number-input').val(val);
-    }
+    };
 
 }(jQuery));
